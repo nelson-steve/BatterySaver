@@ -1,8 +1,13 @@
+import 'package:battery_info/model/android_battery_info.dart';
 import 'package:battery_saver_app/pages/feature_pages/app_usage.dart';
 import 'package:battery_saver_app/utils/feature_tile.dart';
 import 'package:battery_saver_app/utils/notification_service.dart';
 // import 'package:battery_saver_app/utils/notification_service.dart';
 import 'package:flutter/material.dart';
+import 'package:battery_info/battery_info_plugin.dart';
+
+import '../utils/constants.dart';
+
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -14,22 +19,36 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    height = (height / 3);
     return Column(
       children: [
         Expanded(
           flex: 1,
-          child: GestureDetector(
-            onTap: () => {},
-            child: Container(
-              color: Colors.amber,
-              child: Center(
-                child: Icon(
+          child: Container(
+            color: Colors.indigo.shade200,
+            child: Row(
+              children: [
+                SizedBox(width: 100,),
+                Icon(
                   Icons.battery_0_bar,
+                  color: Colors.black,
                   size: 80,
                 ),
-              ),
+
+                StreamBuilder<AndroidBatteryInfo?>(
+                    stream: BatteryInfoPlugin().androidBatteryInfoStream,
+                    builder: (context, snapshot){
+                      if(snapshot.hasData){
+                        return Text("${(snapshot.data!.batteryLevel)} %", style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 40
+                        ),);
+                      }
+                      else {
+                        return Text("NaN");
+                      }
+                    })
+              ],
+
             ),
           ),
         ),
@@ -42,7 +61,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
             body: LayoutBuilder(
               builder: ((context, constraints) {
-                double wHeight = constraints.maxHeight / 3;
+                double wHeight = constraints.maxHeight / 4;
                 return Column(
                   children: [
                     FeatureTile(
@@ -59,6 +78,11 @@ class _FirstPageState extends State<FirstPage> {
                       height: wHeight,
                       featureValue: 3,
                       featureName: "Battery Remaining Time",
+                    ),
+                    FeatureTile(
+                      height: wHeight,
+                      featureValue: 4,
+                      featureName: "Notification",
                     ),
                   ],
                 );

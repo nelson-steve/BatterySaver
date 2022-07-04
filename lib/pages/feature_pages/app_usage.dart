@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:usage_stats/usage_stats.dart';
 
+import '../../utils/constants.dart';
+
 // Updated version //
 class AppUsage extends StatefulWidget {
   @override
@@ -23,7 +25,7 @@ class _AppUsageState extends State<AppUsage> {
   Future<void> initUsage() async {
     UsageStats.grantUsagePermission();
     DateTime endDate = new DateTime.now();
-    DateTime startDate = DateTime(2022, 6, 25, 0, 0, 0);
+    DateTime startDate = DateTime(2022, 6, 30, 0, 0, 0);
 
     List<EventUsageInfo> queryEvents =
         await UsageStats.queryEvents(startDate, endDate);
@@ -38,7 +40,16 @@ class _AppUsageState extends State<AppUsage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Usage Stats"),
+          title: Text(
+            'App Usage',
+            style: TextStyle(
+              fontFamily: 'Slabo',
+              fontSize: 25,
+              color: compliment1,
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.indigoAccent,
         ),
         body: Container(
           child: ListView.separated(
@@ -48,7 +59,7 @@ class _AppUsageState extends State<AppUsage> {
                 subtitle: Text(events[index].className.toString()),
                 // subtitle: Text(
                 //     "Last time used: ${DateTime.fromMillisecondsSinceEpoch(int.parse(events[index].timeStamp.toString())).toIso8601String()}"),
-                trailing: Text(events[index].eventType.toString()),
+                // trailing: Text(events[index].eventType.toString()),
                 // trailing: Text(events[index].className.toString()),
                 // trailing: Text('null'),
               );

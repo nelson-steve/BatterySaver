@@ -5,7 +5,7 @@ import 'package:battery_saver_app/utils/settings.dart';
 // import 'package:battery_saver_app/utils/hidden_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:battery_saver_app/pages/second_page.dart';
+// import 'package:battery_saver_app/pages/second_page.dart';
 import 'package:usage_stats/usage_stats.dart';
 
 class MainPage extends StatefulWidget {
@@ -30,8 +30,8 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> children = [
     FirstPage(),
-    SecondPage(),
-    ThirdPage(),
+    // SecondPage(),
+    // ThirdPage(),
   ];
   int _currentIndex = 0;
   @override
@@ -71,21 +71,23 @@ class _MainPageState extends State<MainPage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GNav(
-              onTabChange: onTappedBar,
-              selectedIndex: _currentIndex,
+              // onTabChange: onTappedBar,
+              // selectedIndex: _currentIndex,
+              selectedIndex: 1,
               gap: 8,
               backgroundColor: Colors.indigoAccent,
               // hoverColor: Colors.amber,
               // rippleColor: Colors.amber,
               tabBackgroundColor: compliment1,
               // haptic: true,
-              color: Color.fromARGB(255, 79, 102, 230),
+              // color: Color.fromARGB(255, 79, 102, 230),
+              color: Colors.transparent,
               activeColor: Colors.grey,
               tabs: const [
                 GButton(
-                  icon: Icons.home,
+                  icon: Icons.notifications_rounded,
                   iconSize: 25,
-                  text: 'Home',
+                  text: 'Notification',
                   textStyle: TextStyle(
                     fontFamily: 'Slabo',
                     fontSize: 15,
@@ -93,9 +95,9 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 GButton(
-                  icon: Icons.notifications_rounded,
+                  icon: Icons.home,
                   iconSize: 25,
-                  text: 'Notification',
+                  text: 'Home',
                   textStyle: TextStyle(
                     fontFamily: 'Slabo',
                     fontSize: 15,
