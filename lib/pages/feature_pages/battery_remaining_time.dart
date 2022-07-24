@@ -32,30 +32,35 @@ class _BatteryRemainingTimeState extends State<BatteryRemainingTime> {
           stream: BatteryInfoPlugin().androidBatteryInfoStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              battery = (((snapshot.data!.batteryCapacity)! / 1000) + 600) / 384;
+              battery =
+                  (((snapshot.data!.batteryCapacity)! / 1000) + 600) / 284;
 
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                SizedBox(width: 2,),
-              Column(
-              children: [
-              Text("On average use the battery should last:", style: TextStyle(
-                  fontFamily: 'Slabo',
-                  fontSize: 22
-              ),),
-            Text("Hours: ${battery}", style: TextStyle(
-                fontFamily: 'Slabo',
-                fontSize: 22
-            ),)
-            ],
-            ),
-            SizedBox(width: 2,),
-              ],);
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "On average use the battery should last:",
+                        style: TextStyle(fontFamily: 'Slabo', fontSize: 22),
+                      ),
+                      Text(
+                        "Hours: ${battery}",
+                        style: TextStyle(fontFamily: 'Slabo', fontSize: 22),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                ],
+              );
               // Text(
               //     "Battery Capacity: ${((snapshot.data!.batteryCapacity)! / 1000) + 600} mAh")
-            }
-            else {
+            } else {
               return Text("Na");
             }
           }),

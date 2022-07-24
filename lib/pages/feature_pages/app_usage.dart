@@ -25,7 +25,7 @@ class _AppUsageState extends State<AppUsage> {
   Future<void> initUsage() async {
     UsageStats.grantUsagePermission();
     DateTime endDate = new DateTime.now();
-    DateTime startDate = DateTime(2022, 6, 30, 0, 0, 0);
+    DateTime startDate = DateTime(2022, 7, 23, 0, 0, 0);
 
     List<EventUsageInfo> queryEvents =
         await UsageStats.queryEvents(startDate, endDate);
@@ -33,11 +33,15 @@ class _AppUsageState extends State<AppUsage> {
     this.setState(() {
       events = queryEvents.reversed.toList();
     });
+
+    filterAppsList();
+    filterAppsList();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text(

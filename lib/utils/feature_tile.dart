@@ -31,20 +31,34 @@ class _FeatureTileState extends State<FeatureTile> {
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:[
-            Container(height: 2,width: double.infinity,color: Colors.grey,),
+          children: [
+            Container(
+              height: 2,
+              width: double.infinity,
+              color: Colors.grey,
+            ),
             Row(
-            children: [SizedBox(width: 5,),
-              Text(widget.featureName, style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                fontFamily: 'Slabo',
-              ),)
-              // Text(widget.featureName),
-            ],
-          ),
-            Container(height: 2,width: double.infinity,color: Colors.grey,),
-      ],
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  widget.featureName,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontFamily: 'Slabo',
+                  ),
+                )
+                // Text(widget.featureName),
+              ],
+            ),
+            Container(
+              height: 2,
+              width: double.infinity,
+              color: Colors.grey,
+            ),
+          ],
         ),
       ),
     );
@@ -61,8 +75,8 @@ class _FeatureTileState extends State<FeatureTile> {
       Navigator.of(context).push(
           MaterialPageRoute(builder: ((context) => BatteryRemainingTime())));
     } else if (x == 4) {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: ((context) => NotificationPage())));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: ((context) => NotificationPage())));
     }
   }
 }

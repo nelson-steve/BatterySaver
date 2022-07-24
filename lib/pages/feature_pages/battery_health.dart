@@ -20,7 +20,6 @@ class _BatteryHealthState extends State<BatteryHealth> {
   }
 
   String batteryHealth = "";
-  String batteryWatts = "";
   String batteryCapacity = "";
   double BatteryTime = 0.0;
   double? watts = 0;
@@ -30,119 +29,120 @@ class _BatteryHealthState extends State<BatteryHealth> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-        'Battery Health',
-        style: TextStyle(
-          fontFamily: 'Slabo',
-          fontSize: 25,
-          color: compliment1,
+          'Battery Health',
+          style: TextStyle(
+            fontFamily: 'Slabo',
+            fontSize: 25,
+            color: compliment1,
+          ),
         ),
-      ),
-      elevation: 0,
-      backgroundColor: Colors.indigoAccent,
+        elevation: 0,
+        backgroundColor: Colors.indigoAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:[ Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FutureBuilder<AndroidBatteryInfo?>(
-                    future: BatteryInfoPlugin().androidBatteryInfo,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Text(
-                            'Battery Health: ${snapshot.data!.health?.toUpperCase()}', style: TextStyle(
-                            fontFamily: 'Slabo',
-                            fontSize: 22
-                        ),);
-                      }
-                      return CircularProgressIndicator();
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                StreamBuilder<AndroidBatteryInfo?>(
-                    stream: BatteryInfoPlugin().androidBatteryInfoStream,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text("Voltage: ${(snapshot.data?.voltage)} mV", style: TextStyle(
-                                fontFamily: 'Slabo',
-                                fontSize: 22
-                            ),),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                                "Charging status: ${(snapshot.data?.chargingStatus.toString().split(".")[1])}", style: TextStyle(
-                                fontFamily: 'Slabo',
-                                fontSize: 22
-                            ),),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                                "Battery Level: ${(snapshot.data?.batteryLevel)} %", style: TextStyle(
-                                fontFamily: 'Slabo',
-                                fontSize: 22
-                            ),),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            // Text(
-                            //     "Battery Capacity: ${((snapshot.data!.batteryCapacity)! / 1000)} mAh"),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // Text("Technology: ${(snapshot.data!.technology)} "),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            Text(
-                                "Battery present: ${(snapshot.data?.present)! ? "Yes" : "False"} ", style: TextStyle(
-                                fontFamily: 'Slabo',
-                                fontSize: 22
-                            ),),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            // Text("Scale: ${(snapshot.data?.scale)} "),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // Text(
-                            //     "Remaining energy: ${-((snapshot.data?.remainingEnergy)! * 1.0E-9)} Watt-hours,"),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // Text(
-                            //     "Current Average: ${(snapshot.data?.currentAverage)},"),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // _getChargeTime(snapshot.data!),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // Text("Capacity: ${batteryCapacity}"),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // _calculateTime(snapshot.data!),
-                          ],
-                        );
-                      }
-                      return CircularProgressIndicator();
-                    })
-              ],
-            ),
-          ],
+            children: [
+              Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FutureBuilder<AndroidBatteryInfo?>(
+                      future: BatteryInfoPlugin().androidBatteryInfo,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            'Battery Health: ${snapshot.data!.health?.toUpperCase()}',
+                            style: TextStyle(fontFamily: 'Slabo', fontSize: 22),
+                          );
+                        }
+                        return CircularProgressIndicator();
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  StreamBuilder<AndroidBatteryInfo?>(
+                      stream: BatteryInfoPlugin().androidBatteryInfoStream,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "Voltage: ${(snapshot.data?.voltage)} mV",
+                                style: TextStyle(
+                                    fontFamily: 'Slabo', fontSize: 22),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Charging status: ${(snapshot.data?.chargingStatus.toString().split(".")[1])}",
+                                style: TextStyle(
+                                    fontFamily: 'Slabo', fontSize: 22),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Battery Level: ${(snapshot.data?.batteryLevel)} %",
+                                style: TextStyle(
+                                    fontFamily: 'Slabo', fontSize: 22),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              // Text(
+                              //     "Battery Capacity: ${((snapshot.data!.batteryCapacity)! / 1000)} mAh"),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text("Technology: ${(snapshot.data!.technology)} "),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              Text(
+                                "Battery present: ${(snapshot.data?.present)! ? "Yes" : "False"} ",
+                                style: TextStyle(
+                                    fontFamily: 'Slabo', fontSize: 22),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              // Text("Scale: ${(snapshot.data?.scale)} "),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text(
+                              //     "Remaining energy: ${-((snapshot.data?.remainingEnergy)! * 1.0E-9)} Watt-hours,"),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text(
+                              //     "Current Average: ${(snapshot.data?.currentAverage)},"),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // _getChargeTime(snapshot.data!),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text("Capacity: ${batteryCapacity}"),
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // _calculateTime(snapshot.data!),
+                            ],
+                          );
+                        }
+                        return CircularProgressIndicator();
+                      })
+                ],
+              ),
+            ],
           ),
-    ),
+        ),
       ),
     );
   }

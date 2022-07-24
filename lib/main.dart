@@ -1,4 +1,4 @@
-import 'package:battery_saver_app/main_page.dart';
+import 'package:battery_saver_app/pages/first_page.dart';
 import 'package:battery_saver_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           // secondary: const Color(0xFFFFC107),
         ),
       ),
-      home: MainPage(),
+      home: FirstPage(),
     );
   }
 }
